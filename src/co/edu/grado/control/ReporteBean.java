@@ -93,7 +93,7 @@ public class ReporteBean {
         mapa.put("estudiante", "Estudiante");
         mapa.put("cedula", "Cedula");
         mapa.put("nivel", "Nivel");
-        mapa.put("codigo", "Codigo");
+        mapa.put("codigo", "Código");
         mapa.put("titulo", "Titulo");
         mapa.put("modalidad", "Modalidad");
         mapa.put("fase_actual", "Fase");

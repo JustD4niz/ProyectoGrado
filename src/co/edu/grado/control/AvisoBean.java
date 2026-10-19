@@ -64,7 +64,7 @@ public class AvisoBean {
         long dias = p.getDiasRestantes();
         if (dias <= 30 && dias >= 0) {
             avisos.add("El proyecto " + p.getCodigo() + " vence en " + dias
-                    + " dia(s) (" + co.edu.grado.util.FechaUtil.formato(p.getFechaVencimiento()) + ").");
+                    + " día(s) (" + co.edu.grado.util.FechaUtil.formato(p.getFechaVencimiento()) + ").");
         } else if (dias < 0) {
             avisos.add("El proyecto " + p.getCodigo() + " se encuentra vencido.");
         }

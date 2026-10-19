@@ -36,7 +36,7 @@ public class PerfilBean {
         error = null;
         mensaje = null;
         if (usuarioSesion == null) {
-            error = "Sesion no valida.";
+            error = "Sesión no válida.";
             return false;
         }
         if (ValidacionUtil.esVacio(nombre) || ValidacionUtil.esVacio(email)) {
@@ -48,7 +48,7 @@ public class PerfilBean {
             return false;
         }
         if (dao.existeEmail(email.trim().toLowerCase(), usuarioSesion.getId())) {
-            error = "Ese correo ya esta registrado por otro usuario.";
+            error = "Ese correo ya está registrado por otro usuario.";
             return false;
         }
         usuarioSesion.setNombre(nombre.trim());
@@ -56,7 +56,7 @@ public class PerfilBean {
         dao.actualizar(usuarioSesion);
         mensaje = "Datos actualizados correctamente.";
         new HistorialDAO().registrar(usuarioSesion.getId(), "USUARIO", usuarioSesion.getId(),
-                "PERFIL", "Actualizo sus datos de perfil");
+                "PERFIL", "Actualizó sus datos de perfil");
         return true;
     }
 
@@ -64,20 +64,20 @@ public class PerfilBean {
         error = null;
         mensaje = null;
         if (usuarioSesion == null) {
-            error = "Sesion no valida.";
+            error = "Sesión no válida.";
             return false;
         }
         if (!HashUtil.verificar(passwordActual, usuarioSesion.getPasswordSalt(),
                 usuarioSesion.getPasswordHash())) {
-            error = "La contrasena actual no es correcta.";
+            error = "La contraseña actual no es correcta.";
             return false;
         }
         if (ValidacionUtil.esVacio(passwordNueva) || passwordNueva.length() < 6) {
-            error = "La nueva contrasena debe tener al menos 6 caracteres.";
+            error = "La nueva contraseña debe tener al menos 6 caracteres.";
             return false;
         }
         if (!passwordNueva.equals(passwordConfirmar)) {
-            error = "La confirmacion no coincide con la nueva contrasena.";
+            error = "La confirmación no coincide con la nueva contraseña.";
             return false;
         }
         String sal = HashUtil.generarSal();
@@ -85,9 +85,9 @@ public class PerfilBean {
         dao.actualizarPassword(usuarioSesion.getId(), passwordNueva);
         usuarioSesion.setPasswordSalt(sal);
         usuarioSesion.setPasswordHash(hash);
-        mensaje = "Contrasena actualizada correctamente.";
+        mensaje = "Contraseña actualizada correctamente.";
         new HistorialDAO().registrar(usuarioSesion.getId(), "USUARIO", usuarioSesion.getId(),
-                "CAMBIO_PASSWORD", "Actualizo su contrasena");
+                "CAMBIO_PASSWORD", "Actualizó su contraseña");
         return true;
     }
 }

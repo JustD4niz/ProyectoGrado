@@ -142,10 +142,10 @@ public class ConfigBean {
             ps.executeUpdate();
             co.edu.grado.util.Conexion.cerrar(null, ps, cn);
             Configuracion.recargar();
-            mensaje = "Configuracion actualizada.";
+            mensaje = "Configuración actualizada.";
             return true;
         } catch (Exception e) {
-            error = "No se pudo actualizar la configuracion.";
+            error = "No se pudo actualizar la configuración.";
             return false;
         }
     }
@@ -167,7 +167,7 @@ public class ConfigBean {
     public List<Map<String, String>> getDocumental() {
         List<Map<String, String>> lista = new ArrayList<>();
         agregar(lista, "Reglamento de trabajo de grado", Configuracion.get("documental.reglamento"));
-        agregar(lista, "Rejilla institucional de evaluacion", Configuracion.get("documental.rejilla"));
+        agregar(lista, "Rejilla institucional de evaluación", Configuracion.get("documental.rejilla"));
         agregar(lista, "F-DC 124 - Formato de propuesta", Configuracion.get("documental.fdc124"));
         agregar(lista, "F-DC 125 - Formato de informe final", Configuracion.get("documental.fdc125"));
         agregar(lista, "Reglamento de estimulos", Configuracion.get("documental.estinculos"));

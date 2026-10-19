@@ -12,7 +12,7 @@
             <h2 style="margin:0;">Banco de propuestas</h2>
             <a class="btn btn-primary btn-sm" href="${ctx}/vistas/ideas/formulario.jsp">Nueva propuesta</a>
         </div>
-        <p class="muted">Propuestas que has registrado en el banco. Solo se pueden editar o eliminar mientras est&eacute;n pendientes de revisi&oacute;n del Comitéeacute;.</p>
+        <p class="muted">Propuestas que has registrado en el banco. Solo se pueden editar o eliminar mientras est&eacute;n pendientes de revisi&oacute;n del Comit&eacute;.</p>
         <c:choose>
             <c:when test="${empty ideas.misIdeas}">
                 <div class="empty">A&uacute;n no has registrado ideas en el banco.</div>

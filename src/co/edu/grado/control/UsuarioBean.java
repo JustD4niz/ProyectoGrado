@@ -96,7 +96,7 @@ public class UsuarioBean {
             new HistorialDAO().registrar(id, "USUARIO", id, "ACTUALIZAR", "Usuario actualizado: " + u.getEmail());
         } else {
             if (ValidacionUtil.esVacio(password) || password.length() < 6) {
-                error = "La contrasena inicial debe tener al menos 6 caracteres.";
+                error = "La contraseña inicial debe tener al menos 6 caracteres.";
                 return false;
             }
             int nuevoId = dao.crear(u, password);

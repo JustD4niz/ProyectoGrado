@@ -25,25 +25,25 @@ public class Etiquetas {
 
     static {
         ROL.put("ADMIN", "Administrador");
-        ROL.put("COMITE", "Comite de Trabajo de Grado");
+        ROL.put("COMITE", "Comité de Trabajo de Grado");
         ROL.put("DIRECTOR", "Director");
         ROL.put("EVALUADOR", "Evaluador");
         ROL.put("DOCENTE", "Docente");
         ROL.put("ESTUDIANTE", "Estudiante");
 
-        NIVEL.put("TECNOLOGIA", "Tecnologia");
-        NIVEL.put("INGENIERIA", "Ingenieria");
+        NIVEL.put("TECNOLOGIA", "Tecnología");
+        NIVEL.put("INGENIERIA", "Ingeniería");
 
-        MODALIDAD.put("INVESTIGACION", "Proyecto de Investigacion");
-        MODALIDAD.put("DESARROLLO", "Desarrollo Tecnologico");
-        MODALIDAD.put("MONOGRAFIA", "Monografia");
+        MODALIDAD.put("INVESTIGACION", "Proyecto de Investigación");
+        MODALIDAD.put("DESARROLLO", "Desarrollo Tecnológico");
+        MODALIDAD.put("MONOGRAFIA", "Monografía");
 
         FASE.put("PAGO", "Fase 1 - Pago");
         FASE.put("PROPUESTA_I", "Fase 2 - Propuesta I");
         FASE.put("PROPUESTA_II", "Fase 3 - Propuesta II");
         FASE.put("INFORME_I", "Fase 4 - Informe I");
         FASE.put("INFORME_II", "Fase 5 - Informe II");
-        FASE.put("SUSTENTACION", "Fase 6 - Fase final");
+        FASE.put("SUSTENTACION", "Fase 6 - Sustentación");
         FASE.put("CERRADO", "Cierre");
 
         ESTADO_PROYECTO.put("EN_FLUJO", "En flujo");
@@ -60,7 +60,7 @@ public class Etiquetas {
         ESTADO_SOLICITUD.put("APROBADA", "Aprobada");
         ESTADO_SOLICITUD.put("RECHAZADA", "Rechazada");
 
-        TIPO_SOLICITUD.put("PRORROGA", "Prorroga");
+        TIPO_SOLICITUD.put("PRORROGA", "Prórroga");
         TIPO_SOLICITUD.put("CAMBIO_DIRECTOR", "Cambio de director");
         TIPO_SOLICITUD.put("RETIRO", "Retiro de integrante");
         TIPO_SOLICITUD.put("PQRS", "PQRS");
@@ -68,17 +68,17 @@ public class Etiquetas {
         TIPO_DOCUMENTO.put("DESPRENDIBLE_PAGO", "Desprendible de pago");
         TIPO_DOCUMENTO.put("PROPUESTA_FDC124", "Propuesta F-DC 124");
         TIPO_DOCUMENTO.put("INFORME_FDC125", "Informe final F-DC 125");
-        TIPO_DOCUMENTO.put("CARTA_PRORROGA", "Carta de prorroga");
+        TIPO_DOCUMENTO.put("CARTA_PRORROGA", "Carta de prórroga");
         TIPO_DOCUMENTO.put("COMPROBANTE_PRORROGA", "Comprobante de pago");
         TIPO_DOCUMENTO.put("CARTA_RETIRO", "Carta de retiro");
         TIPO_DOCUMENTO.put("CARTA_CAMBIO_DIRECTOR", "Carta de cambio de director");
-        TIPO_DOCUMENTO.put("ACTA_SUSTENTACION", "Acta de sustentacion");
+        TIPO_DOCUMENTO.put("ACTA_SUSTENTACION", "Acta de sustentación");
         TIPO_DOCUMENTO.put("OTRO", "Otro");
 
         RESPONSABLE.put("ESTUDIANTE", "Estudiante");
         RESPONSABLE.put("DIRECTOR", "Director");
         RESPONSABLE.put("EVALUADOR", "Evaluador");
-        RESPONSABLE.put("COMITE", "Comite");
+        RESPONSABLE.put("COMITE", "Comité");
 
         CONCEPTO.put("APROBADO", "Aprobado");
         CONCEPTO.put("APROBADO_CON_CORRECCIONES", "Aprobado con correcciones");

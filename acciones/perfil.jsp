@@ -30,7 +30,7 @@
         </c:choose>
     </c:when>
     <c:otherwise>
-        <c:set var="flashError" value="Accion no reconocida" scope="session" />
+        <c:set var="flashError" value="Acci&oacute;n no reconocida" scope="session" />
     </c:otherwise>
 </c:choose>
 <c:redirect url="/vistas/perfil.jsp" />

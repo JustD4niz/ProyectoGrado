@@ -26,7 +26,7 @@
                 <label for="nivel">Nivel</label>
                 <select id="nivel" name="nivel" data-auto>
                     <option value="">Todos</option>
-                    <option value="Tecnología" ${param.nivel eq 'Tecnología' ? 'selected' : ''}>Tecnolog&iacute;a</option>
+                    <option value="TECNOLOGIA" ${param.nivel eq 'TECNOLOGIA' ? 'selected' : ''}>Tecnolog&iacute;a</option>
                     <option value="INGENIERIA" ${param.nivel eq 'INGENIERIA' ? 'selected' : ''}>Ingenier&iacute;a</option>
                 </select>
             </div>

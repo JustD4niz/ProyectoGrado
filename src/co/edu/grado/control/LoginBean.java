@@ -29,13 +29,13 @@ public class LoginBean {
     public boolean iniciarSesion() {
         error = null;
         if (ValidacionUtil.esVacio(email) || ValidacionUtil.esVacio(password)) {
-            error = "Debe ingresar el correo y la contrasena.";
+            error = "Debe ingresar el correo y la contraseña.";
             return false;
         }
         UsuarioDAO dao = new UsuarioDAO();
         Usuario u = dao.porEmail(email.trim().toLowerCase());
         if (u == null) {
-            error = "El correo no esta registrado en el sistema.";
+            error = "El correo no está registrado en el sistema.";
             return false;
         }
         if (!u.isActivo()) {
@@ -43,7 +43,7 @@ public class LoginBean {
             return false;
         }
         if (!HashUtil.verificar(password, u.getPasswordSalt(), u.getPasswordHash())) {
-            error = "La contrasena es incorrecta.";
+            error = "La contraseña es incorrecta.";
             return false;
         }
         usuario = u;

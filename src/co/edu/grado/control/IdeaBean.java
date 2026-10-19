@@ -70,7 +70,7 @@ public class IdeaBean {
         error = null;
         mensaje = null;
         if (usuarioSesion == null) {
-            error = "Sesion no valida.";
+            error = "Sesión no válida.";
             return false;
         }
         if (ValidacionUtil.esVacio(titulo) || ValidacionUtil.esVacio(descripcion)
@@ -93,7 +93,7 @@ public class IdeaBean {
                     || "RECHAZADA".equals(actual.getEstado()))) {
                 error = "No se puede editar una idea que ya fue "
                         + ("APROBADA".equals(actual.getEstado()) ? "aprobada" : "rechazada")
-                        + ". Solo se pueden editar las ideas pendientes de revision del Comite.";
+                        + ". Solo se pueden editar las ideas pendientes de revision del Comité.";
                 return false;
             }
             dao.actualizar(i);
@@ -111,8 +111,8 @@ public class IdeaBean {
             i.setEstado("PENDIENTE");
             i.setDisponible(!esEstudiante);
             int nuevo = dao.crear(i);
-            mensaje = esEstudiante ? "Propuesta enviada al Comite para su evaluacion."
-                    : "Idea registrada en el banco, pendiente de aprobacion.";
+            mensaje = esEstudiante ? "Propuesta enviada al Comité para su evaluación."
+                    : "Idea registrada en el banco, pendiente de aprobación.";
             new HistorialDAO().registrar(usuarioSesion.getId(), "IDEA", nuevo, "CREAR",
                     (esEstudiante ? "Propuesta de estudiante: " : "Idea de banco: ") + i.getTitulo());
             notificarComite(i.getTitulo());
@@ -172,7 +172,7 @@ public class IdeaBean {
         if ("APROBADA".equals(i.getEstado()) || "RECHAZADA".equals(i.getEstado())) {
             error = "No se puede eliminar una propuesta que ya fue "
                     + ("APROBADA".equals(i.getEstado()) ? "aprobada" : "rechazada")
-                    + " por el Comite.";
+                    + " por el Comité.";
             return false;
         }
         if (!i.isDisponible()) {
@@ -264,7 +264,7 @@ public class IdeaBean {
             new Notificador().avisar(c.getId(), "Nueva idea registrada: " + titulo,
                     "vistas/ideas/bandeja.jsp");
             Correo.enviar(c.getEmail(), "Nueva idea registrada",
-                    "Se registro una nueva idea en el banco: " + titulo);
+                    "Se registró una nueva idea en el banco: " + titulo);
         }
     }
 

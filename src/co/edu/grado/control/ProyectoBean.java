@@ -89,7 +89,7 @@ public class ProyectoBean {
         }
         Idea idea = ideaDAO.porId(ideaId);
         if (idea == null || !"APROBADA".equals(idea.getEstado())) {
-            error = "La idea seleccionada no esta disponible.";
+            error = "La idea seleccionada no está disponible.";
             return false;
         }
         boolean propia = idea.getEstudianteId() != null
@@ -172,7 +172,7 @@ public class ProyectoBean {
         if (director != null) {
             proyectoDAO.asignarDocente(nuevoId, director.getId(), "DIRECTOR");
             new HistorialDAO().registrar(usuarioSesion.getId(), "PROYECTO", nuevoId, "ASIGNAR_DIRECTOR",
-                    director.getNombre() + " asignado automaticamente como DIRECTOR");
+                    director.getNombre() + " asignado automáticamente como DIRECTOR");
             new Notificador().avisar(director.getId(),
                     "Fue asignado como director del proyecto " + p.getCodigo(), "vistas/proyectos/mis-proyectos.jsp");
             Correo.enviar(director.getEmail(), "Asignacion como director del proyecto " + p.getCodigo(),
@@ -182,7 +182,7 @@ public class ProyectoBean {
         if (evaluador != null) {
             proyectoDAO.asignarDocente(nuevoId, evaluador.getId(), "EVALUADOR");
             new HistorialDAO().registrar(usuarioSesion.getId(), "PROYECTO", nuevoId, "ASIGNAR_EVALUADOR",
-                    evaluador.getNombre() + " asignado automaticamente como EVALUADOR");
+                    evaluador.getNombre() + " asignado automáticamente como EVALUADOR");
             new Notificador().avisar(evaluador.getId(),
                     "Fue asignado como evaluador del proyecto " + p.getCodigo(), "vistas/proyectos/proyectos-evaluador.jsp");
             Correo.enviar(evaluador.getEmail(), "Asignacion como evaluador del proyecto " + p.getCodigo(),
@@ -190,9 +190,9 @@ public class ProyectoBean {
         }
         if (director == null || evaluador == null) {
             notificarComite("Nuevo proyecto inscrito " + p.getCodigo()
-                    + ". No fue posible asignar director o evaluador automaticamente.");
+                    + ". No fue posible asignar director o evaluador automáticamente.");
         }
-        mensaje = "Proyecto inscrito con el codigo " + p.getCodigo() + "."
+        mensaje = "Proyecto inscrito con el código " + p.getCodigo() + "."
                 + (director != null ? " Director asignado: " + director.getNombre() + "." : "");
 
         for (Usuario u : equipo) {

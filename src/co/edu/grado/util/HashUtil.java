@@ -32,7 +32,7 @@ public final class HashUtil {
             SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
             return aHex(factory.generateSecret(spec).getEncoded());
         } catch (Exception e) {
-            throw new IllegalStateException("Error al cifrar la contrasena", e);
+            throw new IllegalStateException("Error al cifrar la contraseña", e);
         }
     }
 

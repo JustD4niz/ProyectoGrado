@@ -279,7 +279,7 @@ public class FaseBean {
         }
         proyectoDAO.actualizarEstadoFase(proyectoId, "PAGO", "RECHAZADA");
         proyectoDAO.actualizarFase(proyectoId, "PAGO", "ESTUDIANTE");
-        mensaje = "Documentacion de pago rechazada.";
+        mensaje = "Documentación de pago rechazada.";
         new HistorialDAO().registrar(usuarioSesion.getId(), "PROYECTO", proyectoId, "RECHAZAR_PAGO",
                 observaciones);
         notificarEstudiantes(proyectoDAO.porId(proyectoId), "Su pago fue rechazado: " + observaciones);
@@ -302,7 +302,7 @@ public class FaseBean {
             }
             proyectoDAO.actualizarEstadoFase(proyectoId, "PROPUESTA_I", "APROBADA");
             proyectoDAO.actualizarFase(proyectoId, "PROPUESTA_II", "EVALUADOR");
-            mensaje = "Propuesta I aprobada por el director. Pasa a Propuesta II (Evaluador/Comite).";
+            mensaje = "Propuesta I aprobada por el director. Pasa a Propuesta II (Evaluador/Comité).";
             notificarEvaluador(p, "La propuesta del proyecto " + p.getCodigo() + " requiere su concepto.");
         } else {
             if (ValidacionUtil.esVacio(observaciones)) {
@@ -333,11 +333,11 @@ public class FaseBean {
         Proyecto p = proyectoDAO.porId(proyectoId);
         proyectoDAO.registrarConceptoEvaluador(proyectoId, concepto);
         proyectoDAO.actualizarFase(proyectoId, "PROPUESTA_II", "COMITE");
-        mensaje = "Concepto del evaluador registrado. El Comite emite el concepto final.";
+        mensaje = "Concepto del evaluador registrado. El Comité emite el concepto final.";
         new HistorialDAO().registrar(usuarioSesion.getId(), "PROYECTO", proyectoId, "CONCEPTO_EVALUADOR",
                 "Concepto propuesta: " + concepto);
-        notificarComite("El evaluador emitio su concepto (" + concepto + ") de la propuesta "
-                + p.getCodigo() + ". Se requiere el concepto final del Comite.");
+        notificarComite("El evaluador emitió su concepto (" + concepto + ") de la propuesta "
+                + p.getCodigo() + ". Se requiere el concepto final del Comité.");
         return true;
     }
 
@@ -356,9 +356,9 @@ public class FaseBean {
             proyectoDAO.aprobarPropuesta(proyectoId, dias); // RF36
             proyectoDAO.actualizarEstadoFase(proyectoId, "PROPUESTA_II", "APROBADA");
             proyectoDAO.actualizarFase(proyectoId, "INFORME_I", "ESTUDIANTE");
-            mensaje = "Propuesta aprobada definitivamente. Inicia el conteo de " + dias + " dias. Avanza a Informe I.";
+            mensaje = "Propuesta aprobada definitivamente. Inicia el conteo de " + dias + " días. Avanza a Informe I.";
             new HistorialDAO().registrar(usuarioSesion.getId(), "PROYECTO", proyectoId, "APROBAR_PROPUESTA",
-                    "Concepto final del Comite: APROBADO");
+                    "Concepto final del Comité: APROBADO");
             notificarInvolucrados(p, "La propuesta del proyecto " + p.getCodigo()
                     + " fue aprobada. Puede cargar F-DC 125 en Informe I.");
         } else {
@@ -376,7 +376,7 @@ public class FaseBean {
             mensaje = "Propuesta rechazada. El estudiante debe corregir y reenviar (vuelve a Fase 2 - Propuesta I).";
             new HistorialDAO().registrar(usuarioSesion.getId(), "PROYECTO", proyectoId, "RECHAZAR_PROPUESTA",
                     observaciones);
-            notificarEstudiantes(p, "La propuesta fue rechazada por el Comite: " + observaciones);
+            notificarEstudiantes(p, "La propuesta fue rechazada por el Comité: " + observaciones);
         }
         return true;
     }
@@ -391,7 +391,7 @@ public class FaseBean {
         mensaje = null;
         Proyecto p = proyectoDAO.porId(proyectoId);
         if (p.getFechaAprobacionPropuesta() == null) {
-            error = "La propuesta aun no ha sido aprobada.";
+            error = "La propuesta aún no ha sido aprobada.";
             return false;
         }
         if (!informeHabilitado(p)) {
@@ -413,7 +413,7 @@ public class FaseBean {
             new HistorialDAO().registrar(usuarioSesion.getId(), "PROYECTO", proyectoId, "AVANZAR_INFORME",
                     "Avanzado a Informe II");
             notificarEvaluador(p, "El informe final del proyecto " + p.getCodigo()
-                    + " esta listo para su evaluacion (plazo: 5 dias habiles).");
+                    + " está listo para su evaluación (plazo: 5 días hábiles).");
         return true;
     }
 
@@ -489,11 +489,11 @@ public class FaseBean {
             proyectoDAO.actualizarEstadoFase(proyectoId, "INFORME_II", "APROBADA");
             proyectoDAO.actualizarFase(proyectoId, "SUSTENTACION", "COMITE");
             mensaje = "Informe final aprobado con nota " + String.format("%.2f", nota)
-                    + ". Pasa a sustentacion.";
+                    + ". Pasa a sustentación.";
             new HistorialDAO().registrar(usuarioSesion.getId(), "PROYECTO", proyectoId, "EVALUAR_INFORME",
                     "Informe aprobado, nota " + nota);
             notificarComite("El informe final del proyecto " + p.getCodigo()
-                    + " fue aprobado. Programe la sustentacion.");
+                    + " fue aprobado. Programe la sustentación.");
             notificarEstudiantes(p, "Su informe final fue aprobado con nota " + String.format("%.2f", nota) + ".");
         } else {
             if (ValidacionUtil.esVacio(observaciones)) {
@@ -522,11 +522,11 @@ public class FaseBean {
         error = null;
         mensaje = null;
         if (ValidacionUtil.esVacio(sustentacionFecha)) {
-            error = "Debe indicar la fecha de la sustentacion.";
+            error = "Debe indicar la fecha de la sustentación.";
             return false;
         }
         if (sustentacionCalificacion < 0 || sustentacionCalificacion > 5) {
-            error = "La calificacion debe estar entre 0.0 y 5.0.";
+            error = "La calificación debe estar entre 0.0 y 5.0.";
             return false;
         }
         if (!ValidacionUtil.esVacio(sustentacionActa) && !ValidacionUtil.esUrl(sustentacionActa)) {
@@ -541,11 +541,11 @@ public class FaseBean {
         s.setRegistradoPor(usuarioSesion.getId());
         proyectoDAO.guardarSustentacion(s);
         proyectoDAO.actualizarEstadoFase(proyectoId, "SUSTENTACION", "APROBADA");
-        mensaje = "Sustentacion registrada con calificacion " + sustentacionCalificacion + ".";
+        mensaje = "Sustentacion registrada con calificación " + sustentacionCalificacion + ".";
         new HistorialDAO().registrar(usuarioSesion.getId(), "PROYECTO", proyectoId, "SUSTENTACION",
                 "Fecha " + sustentacionFecha + ", nota " + sustentacionCalificacion);
         notificarEstudiantes(proyectoDAO.porId(proyectoId),
-                "Su sustentacion fue registrada con calificacion " + sustentacionCalificacion + ".");
+                "Su sustentación fue registrada con calificación " + sustentacionCalificacion + ".");
         return true;
     }
 
@@ -630,12 +630,12 @@ public class FaseBean {
             return false;
         }
         if (p.getFechaAprobacionPropuesta() == null) {
-            error = "La propuesta aun no ha sido aprobada.";
+            error = "La propuesta aún no ha sido aprobada.";
             return false;
         }
         proyectoDAO.actualizarFechaAprobacionPropuesta(proyectoId,
                 java.sql.Date.valueOf(java.time.LocalDate.now().minusDays(120)));
-        mensaje = "Espera de 3 meses saltada (solo demostracion). Ya puede cargar el informe.";
+        mensaje = "Espera de 3 meses saltada (solo demostración). Ya puede cargar el informe.";
         return true;
     }
 
@@ -651,12 +651,12 @@ public class FaseBean {
 
     public String motivoBloqueoInforme(Proyecto p) {
         if (p == null || p.getFechaAprobacionPropuesta() == null) {
-            return "la propuesta aun no ha sido aprobada.";
+            return "la propuesta aún no ha sido aprobada.";
         }
         Periodo per = periodoDAO.porId(p.getPeriodoId());
         int dias = per != null ? per.getDiasMinInforme() : 90;
         long faltan = dias - FechaUtil.diasTranscurridos(p.getFechaAprobacionPropuesta());
-        return "faltan " + faltan + " dia(s) (minimo " + dias + " dias desde la aprobacion de la propuesta).";
+        return "faltan " + faltan + " día(s) (mínimo " + dias + " días desde la aprobación de la propuesta).";
     }
 
     private LocalDate parseFecha(String valor, LocalDate defecto) {
@@ -714,13 +714,13 @@ public class FaseBean {
 
     private void notificarRevision(Proyecto p, String faseDoc, String tipo) {
         if ("PROPUESTA_I".equals(faseDoc)) {
-            notificarDirector(p, "El estudiante cargo la propuesta F-DC 124 del proyecto "
-                    + p.getCodigo() + ". Requiere su aprobacion.");
+            notificarDirector(p, "El estudiante cargó la propuesta F-DC 124 del proyecto "
+                    + p.getCodigo() + ". Requiere su aprobación.");
         } else if ("INFORME_I".equals(faseDoc)) {
-            notificarDirector(p, "El estudiante cargo el informe F-DC 125 del proyecto "
+            notificarDirector(p, "El estudiante cargó el informe F-DC 125 del proyecto "
                     + p.getCodigo() + ". Requiere su visto bueno.");
         } else if ("PAGO".equals(faseDoc)) {
-            notificarComite("Se registro un desprendible de pago del proyecto " + p.getCodigo() + ".");
+            notificarComite("Se registró un desprendible de pago del proyecto " + p.getCodigo() + ".");
         }
     }
 

@@ -11,7 +11,7 @@
 <t:pagina titulo="Banco de ideas" roles="ESTUDIANTE" activo="vistas/ideas/banco.jsp">
     <div class="card">
         <h2>&iquest;Tienes tu propia propuesta?</h2>
-        <p class="muted">Puedes registrar una propuesta propia y enviarla al Comitéeacute; para su evaluaci&oacute;n.</p>
+        <p class="muted">Puedes registrar una propuesta propia y enviarla al Comit&eacute; para su evaluaci&oacute;n.</p>
         <a class="btn btn-primary" href="${ctx}/vistas/ideas/formulario.jsp">Registrar propuesta</a>
     </div>
 

@@ -73,7 +73,7 @@ public class SolicitudBean {
         error = null;
         mensaje = null;
         if (usuarioSesion == null) {
-            error = "Sesion no valida.";
+            error = "Sesión no válida.";
             return false;
         }
         if (ValidacionUtil.esVacio(tipo)) {
@@ -81,7 +81,7 @@ public class SolicitudBean {
             return false;
         }
         if (ValidacionUtil.esVacio(justificacion)) {
-            error = "Debe registrar la justificacion.";
+            error = "Debe registrar la justificación.";
             return false;
         }
         if (!ValidacionUtil.esVacio(urlCarta) && !ValidacionUtil.esUrl(urlCarta)) {
@@ -99,7 +99,7 @@ public class SolicitudBean {
         }
         if ("PRORROGA".equals(tipo)) {
             if (ValidacionUtil.esVacio(urlCarta) || ValidacionUtil.esVacio(urlComprobante)) {
-                error = "La prorroga requiere la URL de la carta y del comprobante de pago.";
+                error = "La prórroga requiere la URL de la carta y del comprobante de pago.";
                 return false;
             }
             if (p.getFechaVencimiento() != null && FechaUtil.diasRestantes(p.getFechaVencimiento()) < 0) {
@@ -108,7 +108,7 @@ public class SolicitudBean {
             }
         }
         if ("RETIRO".equals(tipo) && ValidacionUtil.esVacio(urlCarta)) {
-            error = "El retiro requiere la carta dirigida al Comite.";
+            error = "El retiro requiere la carta dirigida al Comité.";
             return false;
         }
         if ("CAMBIO_DIRECTOR".equals(tipo) && docenteSolicitadoId == null) {
@@ -124,7 +124,7 @@ public class SolicitudBean {
         s.setUrlComprobante(ValidacionUtil.esVacio(urlComprobante) ? null : urlComprobante.trim());
         s.setDocenteSolicitadoId(docenteSolicitadoId);
         int id = dao.crear(s);
-        mensaje = "Solicitud radicada. El Comite la revisara.";
+        mensaje = "Solicitud radicada. El Comité la revisará.";
         new HistorialDAO().registrar(usuarioSesion.getId(), "SOLICITUD", id, "CREAR",
                 tipo + ": " + justificacion);
         notificarComite("Nueva solicitud de " + tipo + " para el proyecto " + p.getCodigo() + ".");
@@ -150,7 +150,7 @@ public class SolicitudBean {
                     return false;
                 }
                 proyectoDAO.aplicarProrroga(p.getId()); // +180 dias (RF49)
-                mensaje = "Prorroga aprobada. El proyecto se habilita por 180 dias mas.";
+                mensaje = "Prórroga aprobada. El proyecto se habilita por 180 días más.";
             } else if ("CAMBIO_DIRECTOR".equals(s.getTipo())) {
                 proyectoDAO.asignarDocente(p.getId(), s.getDocenteSolicitadoId(), "DIRECTOR");
                 mensaje = "Cambio de director aprobado.";
@@ -163,7 +163,7 @@ public class SolicitudBean {
             dao.resolver(solicitudId, "APROBADA", observacionesResolucion, usuarioSesion.getId());
         } else {
             if (ValidacionUtil.esVacio(observacionesResolucion)) {
-                error = "Debe registrar las observaciones de la decision.";
+                error = "Debe registrar las observaciones de la decisión.";
                 return false;
             }
             dao.resolver(solicitudId, "RECHAZADA", observacionesResolucion, usuarioSesion.getId());

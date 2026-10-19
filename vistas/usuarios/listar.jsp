@@ -58,7 +58,7 @@
                                 </td>
                                 <td class="acciones">
                                     <a class="btn btn-sm btn-outline" href="${ctx}/vistas/usuarios/formulario.jsp?id=${us.id}">Editar</a>
-                                    <a class="btn btn-sm btn-danger" data-confirmar="Eliminar a ${us.nombre}? Esta accion no se puede deshacer."
+                                    <a class="btn btn-sm btn-danger" data-confirmar="Eliminar a ${us.nombre}? Esta acci&oacute;n no se puede deshacer."
                                        href="${ctx}/acciones/usuarios/eliminar.jsp?id=${us.id}">Eliminar</a>
                                 </td>
                             </tr>

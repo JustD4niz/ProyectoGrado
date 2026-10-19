@@ -42,7 +42,7 @@
                 <c:when test="${sessionScope.usuarioSesion.rol eq 'ESTUDIANTE'}">
                     <a class="btn btn-outline" href="${ctx}/vistas/ideas/banco.jsp">Volver al banco de ideas</a>
                 </c:when>
-                <c:when test="${sessionScope.usuarioSesion.rol eq 'Comité' or sessionScope.usuarioSesion.rol eq 'ADMIN'}">
+                <c:when test="${sessionScope.usuarioSesion.rol eq 'COMITE' or sessionScope.usuarioSesion.rol eq 'ADMIN'}">
                     <a class="btn btn-outline" href="${ctx}/vistas/ideas/trazabilidad.jsp">Volver</a>
                 </c:when>
                 <c:otherwise>
