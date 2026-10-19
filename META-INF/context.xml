@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/Proyecto_grado" reloadable="true">
+    <Resource name="jdbc/trabajoGrado"
+              auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://ep-fancy-term-b59i01n4-pooler.c-7.us-east-2.aws.neon.tech/neondb?sslmode=require&amp;prepareThreshold=0"
+              username="neondb_owner"
+              password="npg_NcxztBWL9GI6"
+              maxTotal="30"
+              maxIdle="10"
+              maxWaitMillis="10000"
+              validationQuery="SELECT 1"
+              testOnBorrow="true"/>
+</Context>
