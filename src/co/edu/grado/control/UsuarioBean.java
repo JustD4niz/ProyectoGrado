@@ -124,6 +124,12 @@ public class UsuarioBean {
                 return false;
             }
         }
+        String dependencias = dao.motivoBloqueoEliminacion(id);
+        if (dependencias != null) {
+            error = "No se puede eliminar: el usuario está vinculado a " + dependencias
+                    + ". Para conservar el historial, desactívelo en lugar de borrarlo.";
+            return false;
+        }
         dao.eliminar(id);
         mensaje = "Usuario eliminado correctamente.";
         new HistorialDAO().registrar(null, "USUARIO", id, "ELIMINAR",

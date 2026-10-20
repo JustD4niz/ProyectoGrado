@@ -321,6 +321,60 @@ public class UsuarioDAO {
         }
     }
 
+    /**
+     * RNF17: describe el historial que impide borrar un usuario, o null si puede eliminarse.
+     * Cubre las claves foraneas que referencian usuarios(id).
+     */
+    public String motivoBloqueoEliminacion(int id) {
+        String sql = "SELECT "
+                + "(SELECT COUNT(*) FROM ideas WHERE proponente_id=? OR estudiante_id=? OR revisada_por=?) AS ideas, "
+                + "(SELECT COUNT(*) FROM proyecto_integrantes WHERE estudiante_id=?) AS integrantes, "
+                + "(SELECT COUNT(*) FROM asignaciones_docente WHERE docente_id=?) AS asignaciones, "
+                + "(SELECT COUNT(*) FROM documentos WHERE autor_id=?) AS documentos, "
+                + "(SELECT COUNT(*) FROM seguimientos WHERE director_id=?) AS seguimientos, "
+                + "(SELECT COUNT(*) FROM sustentaciones WHERE registrado_por=?) AS sustentaciones, "
+                + "(SELECT COUNT(*) FROM rubrica_informe WHERE evaluador_id=?) AS rubrica_informe, "
+                + "(SELECT COUNT(*) FROM rubrica_resultado WHERE evaluador_id=?) AS rubrica_resultado, "
+                + "(SELECT COUNT(*) FROM solicitudes WHERE solicitante_id=? OR docente_solicitado_id=? OR resuelta_por=?) AS solicitudes";
+        Connection cn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            cn = Conexion.obtener();
+            ps = cn.prepareStatement(sql);
+            int p = 1;
+            for (int k = 0; k < 13; k++) {
+                ps.setInt(p++, id);
+            }
+            rs = ps.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+            List<String> motivos = new ArrayList<>();
+            int ideas = rs.getInt("ideas");
+            if (ideas > 0) motivos.add(ideas + " idea(s) o propuesta(s)");
+            int integrantes = rs.getInt("integrantes");
+            if (integrantes > 0) motivos.add(integrantes + " proyecto(s) como integrante");
+            int asignaciones = rs.getInt("asignaciones");
+            if (asignaciones > 0) motivos.add(asignaciones + " asignación(es) como director/evaluador");
+            int documentos = rs.getInt("documentos");
+            if (documentos > 0) motivos.add(documentos + " documento(s) cargado(s)");
+            int seguimientos = rs.getInt("seguimientos");
+            if (seguimientos > 0) motivos.add(seguimientos + " seguimiento(s)");
+            int sustentaciones = rs.getInt("sustentaciones");
+            if (sustentaciones > 0) motivos.add(sustentaciones + " sustentación(es)");
+            int rubrica = rs.getInt("rubrica_informe") + rs.getInt("rubrica_resultado");
+            if (rubrica > 0) motivos.add(rubrica + " evaluación(es) de rúbrica");
+            int solicitudes = rs.getInt("solicitudes");
+            if (solicitudes > 0) motivos.add(solicitudes + " solicitud(es)");
+            return motivos.isEmpty() ? null : String.join(", ", motivos);
+        } catch (Exception e) {
+            throw new RuntimeException("Error verificando dependencias del usuario", e);
+        } finally {
+            Conexion.cerrar(rs, ps, cn);
+        }
+    }
+
     public boolean existeEmail(String email, int exceptoId) {
         String sql = "SELECT COUNT(*) FROM usuarios WHERE email = ? AND id <> ?";
         Connection cn = null;
