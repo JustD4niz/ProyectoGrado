@@ -7,13 +7,19 @@
 <jsp:setProperty name="ideas" property="usuarioSesion" value="${sessionScope.usuarioSesion}" />
 <c:set var="id" value="${empty param.id ? 0 : param.id}" />
 <c:set var="idea" value="${ideas.porId(id)}" />
+<c:set var="u" value="${sessionScope.usuarioSesion}" />
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
+<c:set var="visibleEst" value="${idea.estado eq 'APROBADA' and idea.disponible and idea.nivel eq u.nivel}" />
+<c:set var="autorizadoIdea" value="${u.rol ne 'ESTUDIANTE' or visibleEst or (not empty idea.estudianteId and idea.estudianteId eq u.id)}" />
 
 <t:pagina titulo="Detalle de idea" activo="vistas/ideas/banco.jsp">
     <c:if test="${empty idea}">
         <div class="card"><div class="empty">Idea no encontrada.</div></div>
     </c:if>
-    <c:if test="${not empty idea}">
+    <c:if test="${not empty idea and not autorizadoIdea}">
+        <div class="card"><div class="empty">No tienes permisos para ver esta idea.</div></div>
+    </c:if>
+    <c:if test="${not empty idea and autorizadoIdea}">
         <div class="card">
             <h2>Detalle de la idea</h2>
             <dl class="dl">

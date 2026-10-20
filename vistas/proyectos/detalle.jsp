@@ -6,11 +6,18 @@
 <jsp:setProperty name="proy" property="usuarioSesion" value="${sessionScope.usuarioSesion}" />
 <jsp:setProperty name="proy" property="proyectoId" value="${param.p}" />
 <c:set var="p" value="${proy.detalle}" />
+<c:set var="u" value="${sessionScope.usuarioSesion}" />
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
+<c:set var="dir" value="${proy.getAsignacion('DIRECTOR')}" />
+<c:set var="eva" value="${proy.getAsignacion('EVALUADOR')}" />
+<c:set var="autorizado" value="${u.rol eq 'COMITE' or u.rol eq 'ADMIN' or (not empty dir and dir.docenteId eq u.id) or (not empty eva and eva.docenteId eq u.id) or (u.rol eq 'ESTUDIANTE' and proy.esIntegranteDelProyecto)}" />
 
 <t:pagina titulo="Detalle del proyecto" activo="vistas/proyectos/listar.jsp">
     <c:if test="${empty p}">
         <div class="card"><div class="empty">Proyecto no encontrado.</div></div>
+    </c:if>
+    <c:if test="${not empty p and not autorizado}">
+        <div class="card"><div class="empty">No tienes permisos sobre este proyecto.</div></div>
     </c:if>
     <c:if test="${not empty p}">
         <div class="grid grid-3">

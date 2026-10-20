@@ -343,6 +343,19 @@ public class ProyectoBean {
         return proyectoId > 0 ? proyectoDAO.asignacionActiva(proyectoId, rol) : null;
     }
 
+    /** Indica si el usuario en sesion es estudiante integrante del proyecto actual. */
+    public boolean isEsIntegranteDelProyecto() {
+        if (usuarioSesion == null || proyectoId <= 0) {
+            return false;
+        }
+        for (co.edu.grado.modelo.Integrante i : proyectoDAO.integrantes(proyectoId)) {
+            if (i.isActivo() && i.getEstudianteId() == usuarioSesion.getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private String vacio(String v) {
         return ValidacionUtil.esVacio(v) ? null : v;
     }

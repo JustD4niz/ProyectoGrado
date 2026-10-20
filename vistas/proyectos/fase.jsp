@@ -13,6 +13,9 @@
 <c:set var="expandida" value="${empty param.f ? faseAct : param.f}" />
 <c:set var="enFlujo" value="${p.estado eq 'EN_FLUJO'}" />
 <c:set var="esRevisor" value="${u.rol eq 'COMITE' or u.esDocente()}" />
+<c:set var="dirF" value="${faseB.getDirector()}" />
+<c:set var="evaF" value="${faseB.getEvaluador()}" />
+<c:set var="autorizado" value="${u.rol eq 'COMITE' or u.rol eq 'ADMIN' or (not empty dirF and dirF.docenteId eq u.id) or (not empty evaF and evaF.docenteId eq u.id) or (u.rol eq 'ESTUDIANTE' and faseB.esIntegranteDelProyecto)}" />
 
 <t:pagina titulo="Fases y documentos" activo="vistas/proyectos/mis-proyectos.jsp">
     <c:if test="${not empty flashExito}"><div class="alert alert-ok">${flashExito}</div><c:remove var="flashExito" scope="session" /></c:if>
@@ -20,7 +23,9 @@
 
     <c:if test="${empty p}"><div class="card"><div class="empty">Proyecto no encontrado.</div></div></c:if>
 
-    <c:if test="${not empty p}">
+    <c:if test="${not empty p and not autorizado}"><div class="card"><div class="empty">No tienes permisos sobre este proyecto.</div></div></c:if>
+
+    <c:if test="${not empty p and autorizado}">
         <div class="barra-fase">
             <c:choose>
                 <c:when test="${u.rol eq 'ESTUDIANTE'}">
